@@ -6,17 +6,17 @@ import java.util.concurrent.BlockingQueue;
 class Request {}
 
 class Client implements Runnable {
-    private BlockingQueue<Request> queuee;
+    private BlockingQueue<Request> queue;
 
-    Client(BlockingQueue<Request> queuee) {
-        this.queuee = queuee;
+    Client(BlockingQueue<Request> queue) {
+        this.queue = queue;
     }
 
     public void run() {
         while(true) {
             try {
-                System.out.println("Put in queue...");
-                queuee.put(new Request());
+                System.out.println(Thread.currentThread().getName() + " - Put in queue...");
+                queue.put(new Request());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -34,7 +34,7 @@ class Server implements Runnable {
     public void run() {
         while (true) {
             try {
-                System.out.println("Take from queue: " +queue.take());
+                System.out.println(Thread.currentThread().getName() + " - Take from queue: " + queue.take());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -45,7 +45,7 @@ class Server implements Runnable {
 public class BlockingQueueTest {
 
     public static void test() {
-        BlockingQueue<Request> queue = new ArrayBlockingQueue<Request>(3);
+        BlockingQueue<Request> queue = new ArrayBlockingQueue<>(3);
 
         Client client = new Client(queue);
         Server server = new Server(queue);
