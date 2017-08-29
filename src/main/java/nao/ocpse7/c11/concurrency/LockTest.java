@@ -82,7 +82,6 @@ class ColorContainer implements Runnable {
     }
 }
 
-
 public class LockTest {
 
     public static void test() {
