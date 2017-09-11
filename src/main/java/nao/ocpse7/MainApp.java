@@ -1,12 +1,12 @@
 package nao.ocpse7;
 
-import nao.ocpse7.c11.concurrency.LockTest;
+import nao.ocpse7.c12.localization.Formatting;
+
+import java.util.Locale;
 
 public class MainApp {
 
     public static void main(String[] args) {
-
-        LockTest.test2();
-
+        Formatting.formatNumber(Locale.FRANCE, 10_000_000L);
     }
 }
